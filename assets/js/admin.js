@@ -1,11 +1,11 @@
 /**
- * PAIRA LISBOA - Painel Administrativo ADM
+ * MAELLE - Painel Administrativo ADM
  * Gestão de Catálogo e Configurações do Gateway developers.mypos
  */
 
 const Admin = {
   authenticated: false,
-  masterPin: 'paira2026',
+  masterPin: 'maelle2026',
   products: [],
   currentTab: 'produtos',
 
@@ -34,7 +34,7 @@ const Admin = {
   },
 
   checkAuth() {
-    const isAuth = sessionStorage.getItem('paira_admin_auth');
+    const isAuth = sessionStorage.getItem('maelle_admin_auth');
     if (isAuth === 'true') {
       this.authenticated = true;
       document.getElementById('auth-gate').style.display = 'none';
@@ -50,7 +50,7 @@ const Admin = {
   login() {
     const pin = document.getElementById('admin-pin-input').value;
     if (pin === this.masterPin) {
-      sessionStorage.setItem('paira_admin_auth', 'true');
+      sessionStorage.setItem('maelle_admin_auth', 'true');
       this.authenticated = true;
       this.checkAuth();
     } else {
@@ -61,13 +61,13 @@ const Admin = {
   },
 
   logout() {
-    sessionStorage.removeItem('paira_admin_auth');
+    sessionStorage.removeItem('maelle_admin_auth');
     window.location.reload();
   },
 
   async loadCatalog() {
     try {
-      const localCustom = localStorage.getItem('paira_custom_products');
+      const localCustom = localStorage.getItem('maelle_custom_products');
       if (localCustom) {
         this.products = JSON.parse(localCustom);
       } else {
@@ -82,11 +82,11 @@ const Admin = {
   },
 
   saveCatalog() {
-    localStorage.setItem('paira_custom_products', JSON.stringify(this.products));
+    localStorage.setItem('maelle_custom_products', JSON.stringify(this.products));
   },
 
   loadMyPosConfig() {
-    const saved = localStorage.getItem('paira_mypos_config');
+    const saved = localStorage.getItem('maelle_mypos_config');
     if (saved) {
       try {
         this.myposConfig = Object.assign(this.myposConfig, JSON.parse(saved));
@@ -110,7 +110,7 @@ const Admin = {
     this.myposConfig.enableMultibanco = document.getElementById('mypos-method-multibanco').checked;
     this.myposConfig.enableCards = document.getElementById('mypos-method-cards').checked;
 
-    localStorage.setItem('paira_mypos_config', JSON.stringify(this.myposConfig));
+    localStorage.setItem('maelle_mypos_config', JSON.stringify(this.myposConfig));
     this.showAdminToast('Configurações do developers.mypos guardadas com sucesso!');
   },
 

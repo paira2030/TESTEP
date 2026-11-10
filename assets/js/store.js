@@ -1,13 +1,13 @@
 /**
- * PAIRA LISBOA - Core Store Logic
+ * MAELLE - Core Store Logic
  * Catálogo Reativo, Carrinho com Barra de Portes Grátis, Filtros e PDP
  */
 
 // Estado da Loja
 const Store = {
   products: [],
-  cart: JSON.parse(localStorage.getItem('paira_cart')) || [],
-  wishlist: JSON.parse(localStorage.getItem('paira_wishlist')) || [],
+  cart: JSON.parse(localStorage.getItem('maelle_cart')) || [],
+  wishlist: JSON.parse(localStorage.getItem('maelle_wishlist')) || [],
   currentCategory: 'all',
   currentFilterLabel: 'Todas as Peças',
   filterSubcategory: null,
@@ -47,7 +47,7 @@ const Store = {
     return Number(num).toFixed(2).replace('.', ',') + ' €';
   },
 
-  // Voltar ao Início do Site (Botão PAIRA)
+  // Voltar ao Início do Site (Botão MAELLE)
   goHome(event) {
     if (event) event.preventDefault();
     this.currentCategory = 'all';
@@ -360,7 +360,7 @@ const Store = {
 
   // Salvar Carrinho no LocalStorage
   saveCart() {
-    localStorage.setItem('paira_cart', JSON.stringify(this.cart));
+    localStorage.setItem('maelle_cart', JSON.stringify(this.cart));
   },
 
   // Atualizar Quantidade no Carrinho
@@ -426,7 +426,7 @@ const Store = {
             <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>
           </svg>
           <p class="font-display text-xl text-grafite">O seu cesto de compras está vazio</p>
-          <p class="text-xs text-grafite">Descubra as novidades exclusivas da Coleção Paira Lisboa.</p>
+          <p class="text-xs text-grafite">Descubra as novidades exclusivas da Coleção MAELLE.</p>
           <button onclick="Store.closeCart(); Store.filterCategory('all')" class="mt-2 btn-editorial px-6 py-2.5 text-xs">Descobrir Coleção</button>
         </div>
       `;
@@ -561,7 +561,7 @@ const Store = {
       this.wishlist.push(productId);
       this.showToast('Item adicionado aos favoritos!');
     }
-    localStorage.setItem('paira_wishlist', JSON.stringify(this.wishlist));
+    localStorage.setItem('maelle_wishlist', JSON.stringify(this.wishlist));
     this.updateWishlistBadges();
     this.renderCatalog();
   },
@@ -602,10 +602,10 @@ const Store = {
 
   // Notificação Toast
   showToast(message) {
-    let toast = document.getElementById('paira-toast');
+    let toast = document.getElementById('maelle-toast');
     if (!toast) {
       toast = document.createElement('div');
-      toast.id = 'paira-toast';
+      toast.id = 'maelle-toast';
       toast.className = 'fixed bottom-6 right-6 z-50 bg-tinta text-linho px-5 py-3 text-xs tracking-wider uppercase font-medium shadow-2xl transition-all duration-300 transform translate-y-12 opacity-0 flex items-center gap-2 border-l-2 border-oliva';
       document.body.appendChild(toast);
     }

@@ -1,5 +1,5 @@
 /**
- * PAIRA LISBOA - Módulo de Checkout & Pagamentos
+ * MAELLE - Módulo de Checkout & Pagamentos
  * Preparado para integração com Banco de Portugal e developers.mypos
  */
 
@@ -103,14 +103,14 @@ const Checkout = {
     };
 
     // Leitura das configurações myPOS salvas pelo ADM
-    const myPosConfig = JSON.parse(localStorage.getItem('paira_mypos_config')) || {
+    const myPosConfig = JSON.parse(localStorage.getItem('maelle_mypos_config')) || {
       storeId: '00000000',
       clientNumber: '60000000',
       keyIndex: 1,
       mode: 'sandbox'
     };
 
-    const orderId = 'PAIR-PT-' + Math.floor(100000 + Math.random() * 900000);
+    const orderId = 'MAELLE-PT-' + Math.floor(100000 + Math.random() * 900000);
 
     // Estrutura de Encomenda para o Gateway myPOS / Banco de Portugal
     const orderPayload = {
